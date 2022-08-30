@@ -1,0 +1,22 @@
+<section>
+  <div class="card__pokemon">
+    <div class="w-[96px] h-[96px] ml-[30px] mt-[16px]">
+      <img [src]="pokemons.sprites.other.home.front_default" width="96" height="96" alt="pokemon">
+    </div>
+    <div class="flex flex-col mt-[24px] ml-8">
+      <p>{{pokemons.id}}</p>
+      <div class="text-[16px]">
+        <b> {{pokemons?.name | titlecase}} </b>
+      </div>
+      <!-- type pokemon -->
+      <div class="flex gap-1 mt-1">
+        <div class="type__pokemon">
+          <p class="text-sm">{{pokemons?.types[0].type?.name}}</p>
+        </div>
+        <div *ngIf="pokemons?.types[1]?.type?.name" class="type__pokemon">
+          <p class="text-sm"> {{pokemons?.types[1]?.type?.name}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
