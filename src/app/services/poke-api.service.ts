@@ -21,4 +21,8 @@ export class PokeApiService {
     return this._http.get<IPokemon>(`${environment.apiUrl}/pokemon/${id}`)
   }
 
+  getPokemonEspecie(id: string): Observable<any> {
+    return this._http.get<IPokemon>(`${environment.apiUrl}/pokemon-species/${id}`)
+  }
+
 }

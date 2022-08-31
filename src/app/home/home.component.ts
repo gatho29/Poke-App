@@ -10,6 +10,8 @@ import { PokeApiService } from '../services/poke-api.service';
 export class HomeComponent implements OnInit {
 
   pokemons: IPokemon[] = [];
+  search: string;
+  searchPost = '';
 
   constructor(private _pokeApi: PokeApiService) { }
 
@@ -20,11 +22,16 @@ export class HomeComponent implements OnInit {
   getPokeApp(): void {
     this._pokeApi.getPokemonData()
       .subscribe((response) => {
-        response.results.map((results: any) => {
+        response.results.map((results: IPokemon) => {
           this._pokeApi.getPokemonId(results.name).subscribe((response) => {
             this.pokemons.push(response);
+            this.pokemons.sort((a, b) => {
+              return a.id - b.id;
+            });
           });
         });
       });
   }
+
+
 }

@@ -105,6 +105,37 @@
           }
         }
       }
+    },
+    "ngx-nell-library": {
+      "projectType": "library",
+      "root": "projects/ngx-nell-library",
+      "sourceRoot": "projects/ngx-nell-library/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-nell-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-nell-library/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-nell-library/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-nell-library/src/test.ts",
+            "tsConfig": "projects/ngx-nell-library/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-nell-library/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "Poke-App"

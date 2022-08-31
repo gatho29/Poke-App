@@ -1,19 +1,25 @@
-<section class="w-full h-screen bg-gray-100">
-  <div class="w-[1174px] h-[422px] m-auto">
+<main class="w-full h-screen bg-gray-100">
+  <header>
+    <div>
+      <ngx-pkm-topbar [logo]="'/assets/images/logo-rockedex.svg'" [favorito]="'/assets/images/logo-favorito.svg'"></ngx-pkm-topbar>
+    </div>
+  </header>
+
+  <section class="w-[1174px] h-[422px] m-auto">
     <div class="flex flex-col">
-      <div class="flex justify-between items-center">
-        <div class="">
+      <div class="flex justify-between items-center mt-8">
+        <div>
           <b class="text-[32px] ">Pokemones</b>
         </div>
         <!-- search -->
-        <div class="flex gap-2">
-          <input type="text" class="w-[227px] h-[40px] rounded-[8px] pl-3" placeholder="Busca un pokemon">
-          <button>buscar</button>
+        <div class="flex gap-2 items-center">
+          <input type="text" class="w-[227px] h-[40px] rounded-[8px] pl-3" placeholder="Busca un pokemon" [(ngModel)]="search">
+          <ngx-pkm-button title="Buscar" pkmType="primary"></ngx-pkm-button>
         </div>
       </div>
       <div class="grid gap-4 grid-cols-3 mt-4">
         <app-card-pokemon [pokemons]="pokemon" *ngFor="let pokemon of pokemons"></app-card-pokemon>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</main>

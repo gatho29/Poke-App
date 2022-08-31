@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardPokemonComponent } from './card-pokemon/card-pokemon.component';
+import { PkmTopBarModule } from 'projects/ngx-nell-library/src/public-api';
 
 
 
@@ -9,7 +10,8 @@ import { CardPokemonComponent } from './card-pokemon/card-pokemon.component';
     CardPokemonComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PkmTopBarModule
   ],
   exports: [CardPokemonComponent]
 })

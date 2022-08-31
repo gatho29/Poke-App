@@ -16,4 +16,10 @@ export class CardPokemonComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+  saveLocalStorage(pokemon: any) {
+    localStorage.setItem('pokemon', JSON.stringify(pokemon));
+    console.log('guardando localStorage')
+  }
 }
