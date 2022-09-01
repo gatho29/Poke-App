@@ -14,8 +14,7 @@ export class HomeComponent implements OnInit {
   pokemons: Ipokemon[] = [];
   idPokemon: number;
   filterPokemon: '';
-  page = 1;
-  totalPokemons: number;
+  listPokemon;
 
   constructor(public _pokeApi: PokeApiService,
     public _localStorage: LocalStorageService) { }
@@ -25,9 +24,8 @@ export class HomeComponent implements OnInit {
   }
 
   getPokeApp(): void {
-    this._pokeApi.getPokemonData(12, this.page + 1)
+    this._pokeApi.getPokemonData()
       .subscribe((response) => {
-        this.totalPokemons = response.next;
         response.results.map((results: Ipokemon) => {
           this._pokeApi.getPokemonName(results.name).subscribe((response) => {
             this.pokemons.push(response);
@@ -35,9 +33,15 @@ export class HomeComponent implements OnInit {
               return a.id - b.id;
             });
             this.idPokemon = results.id;
+            this.listPokemon = response;
           });
         });
       });
+  }
+
+  onScroll() {
+
+    console.log('smdas')
   }
 
 
