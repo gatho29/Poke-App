@@ -17,7 +17,6 @@ export class ListfavouriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.pokemonsFavorite = this._localStorage.getPokemonFavorites();
-
   }
 
   findIfFavoritePokemon(pokemon :Ipokemon): boolean {

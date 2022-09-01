@@ -10,12 +10,11 @@ import { Ipokemon } from '../models/Ipokemons';
 export class PokeApiService {
 
   pokemons: Ipokemon[] = [];
-  pokemonsFavorite: Ipokemon[] = [];
 
   constructor(private _http: HttpClient) { }
 
-  getPokemonData(limit: number): Observable<any> {
-    return this._http.get<Ipokemon>(`${environment.apiUrl}/pokemon?limit=${limit}`);
+  getPokemonData(limit: number, offset: number): Observable<any> {
+    return this._http.get<Ipokemon>(`${environment.apiUrl}/pokemon?limit=${limit}&offset=${offset}`);
   }
 
   getPokemonName(name: string): Observable<Ipokemon> {

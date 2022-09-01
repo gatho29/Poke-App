@@ -11,9 +11,11 @@ import { PokeApiService } from '../services/poke-api.service';
 })
 export class HomeComponent implements OnInit {
 
-  pokemons: Ipokemon[]= [];
+  pokemons: Ipokemon[] = [];
   idPokemon: number;
   filterPokemon: '';
+  page = 1;
+  totalPokemons: number;
 
   constructor(public _pokeApi: PokeApiService,
     public _localStorage: LocalStorageService) { }
@@ -23,8 +25,9 @@ export class HomeComponent implements OnInit {
   }
 
   getPokeApp(): void {
-    this._pokeApi.getPokemonData(12)
+    this._pokeApi.getPokemonData(12, this.page + 1)
       .subscribe((response) => {
+        this.totalPokemons = response.next;
         response.results.map((results: Ipokemon) => {
           this._pokeApi.getPokemonName(results.name).subscribe((response) => {
             this.pokemons.push(response);
@@ -37,12 +40,11 @@ export class HomeComponent implements OnInit {
       });
   }
 
+
+
   findIfFavoritePokemon(pokemon: Ipokemon): boolean {
     return this._localStorage.findIfFavoritePokemon(pokemon);
   }
 
-  nextPage(): void {
-    this.getPokeApp();
-  }
 
 }
