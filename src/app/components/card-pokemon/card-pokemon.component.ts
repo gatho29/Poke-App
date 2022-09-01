@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IPokemon } from 'src/app/models/Ipokemons';
+import { Router } from '@angular/router';
+import { Ipokemon } from 'src/app/models/Ipokemons';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { PokeApiService } from 'src/app/services/poke-api.service';
 
 @Component({
@@ -9,17 +11,26 @@ import { PokeApiService } from 'src/app/services/poke-api.service';
 })
 export class CardPokemonComponent implements OnInit {
 
-  @Input() pokemons: IPokemon;
+  @Input() pokemons: Ipokemon;
+  @Input() isFavorite : boolean;
+  listPokemonFavorite: any ;
 
-
-  constructor() { }
+  constructor(
+    private _router: Router,
+    private _localStorage: LocalStorageService
+     ) { }
 
   ngOnInit(): void {
   }
 
-
-  saveLocalStorage(pokemon: any) {
-    localStorage.setItem('pokemon', JSON.stringify(pokemon));
-    console.log('guardando localStorage')
+  setPokemonToFavorite(pokemon: Ipokemon): void {
+    this._localStorage.setPokemonToFavorite(pokemon);
   }
+
+
+  goPokemonDetail(pokemon: Ipokemon): void {
+    const id = pokemon.id;
+    this._router.navigate([`/detail-pokemon/${id}`])
+  }
+
 }

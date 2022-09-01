@@ -1,0 +1,30 @@
+<div class="w-full h-screen bg-gray-100">
+  <header>
+    <div>
+      <ngx-pkm-topbar [logo]="'/assets/images/logo-rockedex.svg'" [icon]="'/assets/images/log-sin-favorito.svg'" [badgeCounter]="_localStorage.getPokemonFavorites().length"></ngx-pkm-topbar>
+    </div>
+  </header>
+
+  <section class="m-auto">
+    <div class="flex flex-col">
+      <div class="justify-around mt-8 md:justify-between p-5 sm:flex-col">
+        <div class="flex items-center gap-5">
+          <!-- arrow back -->
+          <div class="cursor-pointer w-8" [routerLink]="'/'">
+            <img src="/assets/images/arrow-left.svg" alt="Arrow" width="30px" height="20px">
+          </div>
+          <b class="text-[32px] ">Favoritos</b>
+        </div>
+
+      </div>
+      <div class="grid gap-4 grid-cols-3 mt-4 md:grid-cols-2 m-auto pr-5 pl-5">
+        <app-card-pokemon [pokemons]="pokemon" [isFavorite]="findIfFavoritePokemon(pokemon)" *ngFor="let pokemon of pokemonsFavorite"></app-card-pokemon>
+      </div>
+      <div *ngIf="pokemonsFavorite?.length === 0" class="m-auto">
+        <p class="text-2xl animate-bounce text-red-400">
+          No hay pokemones favorito, que esperas anda y agrega el que mas le guste!!!
+        </p>
+      </div>
+    </div>
+  </section>
+</div>

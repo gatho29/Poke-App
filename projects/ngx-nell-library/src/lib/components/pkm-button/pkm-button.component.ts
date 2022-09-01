@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PkmButtonComponent implements OnInit {
 
-  @Input() pkmType: 'primary'| 'default';
+  @Input() pkmType: 'primary' | 'default' | 'favourite';
   @Input() title: string;
 
 
@@ -22,6 +22,8 @@ export class PkmButtonComponent implements OnInit {
     switch (this.pkmType) {
       case 'primary':
         return `${nameClase}`;
+      case 'favourite':
+        return `${nameClase}--favourite`;
       default:
       case 'default':
         return `${nameClase}--default`;

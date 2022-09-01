@@ -1,10 +1,30 @@
 .topbar {
-  align-items:center;
+  align-items: center;
   background-color: #FFFF;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  display:flex;
-  justify-content:space-between;
+  display: flex;
+  justify-content: space-between;
   Height: 63px;
-  padding: 0 20px 0 20px;
+  padding: 0 30px 0 20px;
   width: 100%;
+}
+
+.topbar__icon {
+  cursor: pointer;
+  position: relative;
+}
+
+.topbar__badge {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 25px;
+  height: 25px;
+  background-color: rgba(239, 68, 68, 1);
+  color: #FFFF;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
 }

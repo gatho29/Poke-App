@@ -7,8 +7,14 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PkmTopbarComponent implements OnInit {
 
-@Input() logo: string;
-@Input() favorito: string;
+  @Input() logo: string;
+  @Input() favorito: string;
+  @Input() icon: string;
+  @Input() badgeCounter: number;
+  @Input() showBadge: boolean;
+
+
+
 
   constructor() { }
 

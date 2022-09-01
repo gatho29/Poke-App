@@ -5,15 +5,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SearchPipe implements PipeTransform {
 
-  transform(value: any, arg: any): unknown {
-    const resultPosts = [];
+  transform(value: any, args?: any) {
+    if (!value) return null;
+    if (!args) return value;
 
-    for (const post of value) {
-      if (post.name.indexOf(arg) > -1) {
-        console.log('simon')
-      }
-    }
-    return resultPosts;
+    args = args.toLowerCase();
+
+    return value.filter(function (data) {
+      return JSON.stringify(data)
+        .toLowerCase()
+        .includes(args);
+    });
   }
 
 }

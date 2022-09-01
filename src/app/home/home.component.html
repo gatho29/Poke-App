@@ -1,25 +1,36 @@
 <main class="w-full h-screen bg-gray-100">
   <header>
     <div>
-      <ngx-pkm-topbar [logo]="'/assets/images/logo-rockedex.svg'" [favorito]="'/assets/images/logo-favorito.svg'"></ngx-pkm-topbar>
+      <ngx-pkm-topbar [logo]="'/assets/images/logo-rockedex.svg'" [favorito]="'/list-favourite'"
+        [icon]="'/assets/images/log-sin-favorito.svg'" [badgeCounter]="_localStorage.getPokemonFavorites().length">
+      </ngx-pkm-topbar>
     </div>
   </header>
 
-  <section class="w-[1174px] h-[422px] m-auto">
+  <section class="m-auto bg-gray-100">
     <div class="flex flex-col">
-      <div class="flex justify-between items-center mt-8">
+      <div class="flex justify-around mt-8 md:justify-between p-5 sm:flex-col">
         <div>
-          <b class="text-[32px] ">Pokemones</b>
+          <b class="text-[32px]">Pokemones</b>
         </div>
         <!-- search -->
-        <div class="flex gap-2 items-center">
-          <input type="text" class="w-[227px] h-[40px] rounded-[8px] pl-3" placeholder="Busca un pokemon" [(ngModel)]="search">
+        <div class="flex gap-2 items-center sm:mt-3 -mb-5">
+          <input type="text" class="w-[227px] h-[40px] rounded-[8px] pl-3" placeholder="Busca un pokemon"
+            [(ngModel)]="filterPokemon">
           <ngx-pkm-button title="Buscar" pkmType="primary"></ngx-pkm-button>
         </div>
       </div>
-      <div class="grid gap-4 grid-cols-3 mt-4">
-        <app-card-pokemon [pokemons]="pokemon" *ngFor="let pokemon of pokemons"></app-card-pokemon>
+      <div class="search__results m-auto" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50">
+        <div class="grid gap-4 grid-cols-3 mt-4 md:grid-cols-2 m-auto pr-5 pl-5">
+          <app-card-pokemon [pokemons]="pokemon" [isFavorite]="findIfFavoritePokemon(pokemon)"
+            *ngFor="let pokemon of pokemons | search : filterPokemon"></app-card-pokemon>
+        </div>
+
+        <div class="flex justify-center w-full mt-4">
+          <ngx-pkm-button title="Ver más" pkmType="default" (click)="nextPage();"></ngx-pkm-button>
+        </div>
       </div>
+
     </div>
   </section>
 </main>

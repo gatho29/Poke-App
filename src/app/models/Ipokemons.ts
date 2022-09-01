@@ -1,4 +1,5 @@
-export interface IPokemon {
+export interface Ipokemon {
+  results: any;
   name: string;
   id: number;
   types: {
@@ -15,5 +16,13 @@ export interface IPokemon {
       }
     }
   }
+  height: number;
+  weight: number
 }
+
+export interface IspeciePokemon {
+  flavor_text_entries: [];
+}
+
+
 

@@ -1,0 +1,55 @@
+<div class="h-screen bg-gray-100">
+  <header>
+    <div>
+      <ngx-pkm-topbar [logo]="'/assets/images/logo-rockedex.svg'" [icon]="'/assets/images/log-sin-favorito.svg'"
+        [badgeCounter]="_localStorage.getPokemonFavorites().length" [favorito]="'/list-favourite'"></ngx-pkm-topbar>
+    </div>
+  </header>
+
+  <!-- arrow back -->
+  <div class="mt-5 ml-5 cursor-pointer w-8" [routerLink]="'/'">
+    <img src="/assets/images/arrow-left.svg" alt="Arrow" width="30px" height="20px">
+  </div>
+
+  <div
+    class="bg-gray-100 grid grid-flow-col items-center justify-end mr-28 mt-20 lg:mr-3 p-3 md:grid-rows-2 md:justify-center md:m-auto">
+    <picture>
+      <div class="mr-[17rem] md:mr-[1rem]">
+        <img class="md:m-auto" [src]="pokemonDetail?.sprites?.other['official-artwork']?.front_default" width="222"
+          height="222" alt="pokemon">
+      </div>
+    </picture>
+
+    <div class="bg-white w-[480px] h-[351px] p-5 rounded-[16px] sm:w-[328px]">
+      <div class="text-center mt-3">
+        <b class="text-2xl">{{pokemonDetail?.name | titlecase}}</b>
+
+        <!-- type pokemon -->
+        <div class="flex justify-center gap-1 mt-3">
+          <div class="type__pokemon">
+            <p class="text-sm">{{pokemonDetail?.types[0].type?.name}}</p>
+          </div>
+          <div *ngIf="pokemonDetail?.types[1]?.type?.name" class="type__pokemon">
+            <p class="text-sm"> {{pokemonDetail?.types[1]?.type?.name}} </p>
+          </div>
+        </div>
+
+        <div class="w-[432px] h-[42px] text-start mt-4 sm:w-[296px]">
+
+          <p>
+            {{speciePokemon?.flavor_text_entries[26]?.flavor_text}} </p>
+        </div>
+      </div>
+      <div class="mt-5 grid gap-3">
+        <p><b>ID:</b> {{pokemonDetail?.id}} </p>
+        <p><b>Altura:</b> {{pokemonDetail?.height}} </p>
+        <p><b>Peso:</b> {{pokemonDetail?.weight}} </p>
+      </div>
+      <!-- button -->
+      <div class="w-[432px] h-[40px] mt-3 sm:w-[296px]">
+        <ngx-pkm-button title="AGREGAR A FAVORITO" pkmType="favourite" disable="disabled" (click)="setPokemonToFavorite(pokemonDetail)">
+        </ngx-pkm-button>
+      </div>
+    </div>
+  </div>
+</div>

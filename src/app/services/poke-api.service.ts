@@ -2,27 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { IPokemon } from '../models/Ipokemons';
+import { Ipokemon } from '../models/Ipokemons';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokeApiService {
 
-  pokemons: IPokemon[] = [];
+  pokemons: Ipokemon[] = [];
+  pokemonsFavorite: Ipokemon[] = [];
 
   constructor(private _http: HttpClient) { }
 
-  getPokemonData(): Observable<any> {
-    return this._http.get<IPokemon>(`${environment.apiUrl}/pokemon?limit=40`)
+  getPokemonData(limit: number): Observable<any> {
+    return this._http.get<Ipokemon>(`${environment.apiUrl}/pokemon?limit=${limit}`);
   }
 
-  getPokemonId(id: string): Observable<any> {
-    return this._http.get<IPokemon>(`${environment.apiUrl}/pokemon/${id}`)
+  getPokemonName(name: string): Observable<Ipokemon> {
+    return this._http.get<Ipokemon>(`${environment.apiUrl}/pokemon/${name}`);
   }
 
-  getPokemonEspecie(id: string): Observable<any> {
-    return this._http.get<IPokemon>(`${environment.apiUrl}/pokemon-species/${id}`)
+  getPokemonEspecie(id: number): Observable<Ipokemon> {
+    return this._http.get<Ipokemon>(`${environment.apiUrl}/pokemon-species/${id}/`);
   }
-
 }

@@ -6,18 +6,48 @@
   background: #EF4444;
   border-radius: 8px;
   color: #fff;
+  font-weight: 700;
   width: 93px;
-  height: 40px
+  height: 40px;
+  font-size:16px;
+}
+
+.pkm__button:active {
+  background: #d88080;
+}
+
+.pkm__button--favourite {
+    width: 27rem;
 }
 
 .pkm__button--default {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   background: #E5E7EB;
-  border-radius: 8px;
-  font-weight: 700;
+  color: black;
   width: 100px;
   height: 40px;
 }
+
+@media (max-width: 500px) {
+  .pkm__button--favourite {
+    width: 269px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .pkm__button--default {
+    width: 236px;
+  }
+}
+
+@media (max-width: 834px) {
+  .pkm__button--default {
+    width: 100px;
+  }
+}
+
+@media (max-width: 550px) {
+  .pkm__button--default {
+    width: 328px;
+  }
+}
+

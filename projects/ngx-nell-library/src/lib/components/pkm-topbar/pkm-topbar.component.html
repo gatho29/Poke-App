@@ -3,9 +3,13 @@
     <picture class="topbar__logo">
       <img [src]="logo" alt="Logo">
     </picture>
-
-    <picture class="topbar__favorito">
-      <img [src]="favorito" alt="favorito">
+    <picture class="topbar__icon">
+      <img [routerLink]="favorito" [src]="icon">
+      <div *ngIf="badgeCounter > 0 ? !showBadge : showBadge">
+        <span class="topbar__badge">{{badgeCounter}}</span>
+      </div>
     </picture>
   </div>
 </header>
+
+
